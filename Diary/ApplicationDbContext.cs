@@ -2,14 +2,22 @@ namespace Diary
 {
     using Diary.Models.Configurations;
     using Diary.Models.Domains;
+    using Diary.Properties;
     using System;
+    using System.Configuration;
+    using System.Data.Common;
     using System.Data.Entity;
+    using System.Data.SqlClient;
     using System.Linq;
+    using System.Windows;
 
     public class ApplicationDbContext : DbContext
     {
+
         public ApplicationDbContext()
-            : base("name=ApplicationDbContext")
+            : base($@"Server={Settings.Default.DbServerAdress}\{Settings.Default.DbServerName};Database={Settings.Default.DbName};User Id={Settings.Default.DbUser};Password={Settings.Default.DbPassword};")
+
+        // : base("name=ApplicationDbContext")
         {
         }
 
@@ -23,6 +31,8 @@ namespace Diary
             modelBuilder.Configurations.Add(new GroupConfiguration());
             modelBuilder.Configurations.Add(new RatingConfiguration());
         }
+
+    
 
     }
 }
