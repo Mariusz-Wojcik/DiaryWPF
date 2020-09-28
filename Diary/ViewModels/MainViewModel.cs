@@ -41,7 +41,7 @@ namespace Diary.ViewModels
 
         }
 
-        
+
 
 
         public ICommand AddStudentsCommand { get; set; }
@@ -106,8 +106,8 @@ namespace Diary.ViewModels
         private async Task DeleteStudent(object obj)
         {
             var metroWindow = Application.Current.MainWindow as MetroWindow;
-                var dialog = await metroWindow.ShowMessageAsync("Usuwanie ucznia", $"Czy na pewno chcesz usunąć ucznia " +
-                    $"{SelectedStudent.FirstName} {SelectedStudent.LastName} ?", MessageDialogStyle.AffirmativeAndNegative);
+            var dialog = await metroWindow.ShowMessageAsync("Usuwanie ucznia", $"Czy na pewno chcesz usunąć ucznia " +
+                $"{SelectedStudent.FirstName} {SelectedStudent.LastName} ?", MessageDialogStyle.AffirmativeAndNegative);
             if (dialog != MessageDialogResult.Affirmative)
                 return;
 
@@ -139,7 +139,7 @@ namespace Diary.ViewModels
             groups.Insert(0, new Models.Domains.Group { Id = 0, Name = "Wszystkie" });
 
             Groups = new ObservableCollection<Group>(groups);
-            
+
             SelectedGroupId = 0;
         }
 
@@ -152,6 +152,7 @@ namespace Diary.ViewModels
         {
             var dbSettingsWindow = new DbSettingsView();
 
+
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 try
@@ -159,13 +160,15 @@ namespace Diary.ViewModels
                     connection.Open();
                     MessageBox.Show("Good Job");
                     return true;
-                   
+
                 }
                 catch (SqlException)
                 {
-                    MessageBox.Show("samsing wrong");
-                    dbSettingsWindow.ShowDialog();
-                    Application.Current.Shutdown();
+                    var dialog = MessageBox.Show("Nie można się połaczyć z bazą danych, czy chcesz wprowadzić dane do serwera bazy danych?", "Błąd serwera", MessageBoxButton.YesNo);
+                    if (dialog == MessageBoxResult.Yes)
+                        dbSettingsWindow.ShowDialog();
+                    else
+                        Application.Current.Shutdown();
                     return false;
                 }
                 finally
@@ -174,6 +177,7 @@ namespace Diary.ViewModels
                 }
             }
         }
+
     }
 }
 

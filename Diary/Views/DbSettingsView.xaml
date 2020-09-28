@@ -23,9 +23,9 @@
             <ColumnDefinition Width="156*"/>
         </Grid.ColumnDefinitions>
 
-        <Label Grid.Row="0" Content="Adres Serwera:" Margin="5" />
+        <Label Grid.Row="0" Content="Adres serwera:" Margin="5" />
         <TextBox Grid.Row="0" Grid.Column="1" Margin="5" Grid.ColumnSpan="3" />
-        <Label Grid.Row="1"  Content="Nazwa srwera:" Margin="5" />
+        <Label Grid.Row="1"  Content="Nazwa serwera:" Margin="5" />
         <TextBox Grid.Row="1" Grid.Column="1" Margin="5" Grid.ColumnSpan="3" />
         <Label Grid.Row="2"  Content="Nazwa bazy danych:" Margin="5" />
         <TextBox Grid.Row="2" Grid.Column="1" Margin="5" Grid.ColumnSpan="3" />
