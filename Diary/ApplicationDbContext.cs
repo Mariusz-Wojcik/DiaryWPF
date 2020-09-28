@@ -13,11 +13,11 @@ namespace Diary
 
     public class ApplicationDbContext : DbContext
     {
-
         public ApplicationDbContext()
-            : base($@"Server={Settings.Default.DbServerAdress}\{Settings.Default.DbServerName};Database={Settings.Default.DbName};User Id={Settings.Default.DbUser};Password={Settings.Default.DbPassword};")
-
-        // : base("name=ApplicationDbContext")
+            : base($@"Server={Settings.Default.DbServerAdress}\{Settings.Default.DbServerName};
+                    Database={Settings.Default.DbName};
+                    User Id={Settings.Default.DbUser};
+                    Password={Settings.Default.DbPassword};")
         {
         }
 

@@ -73,7 +73,7 @@ namespace Diary.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("password")]
+        [global::System.Configuration.DefaultSettingValueAttribute("passwords")]
         public string DbPassword {
             get {
                 return ((string)(this["DbPassword"]));

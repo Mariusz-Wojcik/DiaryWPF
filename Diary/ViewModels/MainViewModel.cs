@@ -2,12 +2,14 @@
 using Diary.Models;
 using Diary.Models.Domains;
 using Diary.Models.Wrappers;
+using Diary.Properties;
 using Diary.Views;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,10 +22,15 @@ namespace Diary.ViewModels
     public class MainViewModel : ViewModelBase
     {
         private Repository _repository = new Repository();
+        private string dbServerAdress = Settings.Default.DbServerAdress;
+        private string dbServerName = Settings.Default.DbServerName;
+        private string dbName = Settings.Default.DbName;
+        private string dbUser = Settings.Default.DbUser;
+        private string dbPassword = Settings.Default.DbPassword;
+
         public MainViewModel()
         {
-
-
+            IsServerConnected($@"Server={dbServerAdress}\{dbServerName};Database={dbName};User Id={dbUser};Password={dbPassword};");
             AddStudentsCommand = new RelayCommand(AddEditStudent);
             EditStudentsCommand = new RelayCommand(AddEditStudent, CanEditDeleteStudent);
             DeleteStudentsCommand = new AsyncRelayCommand(DeleteStudent, CanEditDeleteStudent);
@@ -139,6 +146,33 @@ namespace Diary.ViewModels
         private void RefreshDiary()
         {
             Students = new ObservableCollection<StudentWrapper>(_repository.GetStudents(SelectedGroupId));
+        }
+
+        private static bool IsServerConnected(string connectionString)
+        {
+            var dbSettingsWindow = new DbSettingsView();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    MessageBox.Show("Good Job");
+                    return true;
+                   
+                }
+                catch (SqlException)
+                {
+                    MessageBox.Show("samsing wrong");
+                    dbSettingsWindow.ShowDialog();
+                    Application.Current.Shutdown();
+                    return false;
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
         }
     }
 }

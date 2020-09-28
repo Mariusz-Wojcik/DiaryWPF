@@ -15,7 +15,7 @@
       <Value Profile="(Default)">user</Value>
     </Setting>
     <Setting Name="DbPassword" Type="System.String" Scope="User">
-      <Value Profile="(Default)">password</Value>
+      <Value Profile="(Default)">passwords</Value>
     </Setting>
   </Settings>
 </SettingsFile>
