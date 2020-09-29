@@ -6,6 +6,8 @@
         xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:local="clr-namespace:Diary.Views"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Name="DbSettingsWindow"
         Title="Dane bazy danych" Height="300" Width="400">
     <Grid>
         <Grid.RowDefinitions>
@@ -24,19 +26,19 @@
         </Grid.ColumnDefinitions>
 
         <Label Grid.Row="0" Content="Adres serwera:" Margin="5" />
-        <TextBox Grid.Row="0" Grid.Column="1" Margin="5" Grid.ColumnSpan="3" />
+        <TextBox Text="{Binding DbServerAddress}" Grid.Row="0" Grid.Column="1" Margin="5" Grid.ColumnSpan="3" />
         <Label Grid.Row="1"  Content="Nazwa serwera:" Margin="5" />
-        <TextBox Grid.Row="1" Grid.Column="1" Margin="5" Grid.ColumnSpan="3" />
+        <TextBox Text="{Binding DbServerName}" Grid.Row="1" Grid.Column="1" Margin="5" Grid.ColumnSpan="3" />
         <Label Grid.Row="2"  Content="Nazwa bazy danych:" Margin="5" />
-        <TextBox Grid.Row="2" Grid.Column="1" Margin="5" Grid.ColumnSpan="3" />
+        <TextBox Text="{Binding DbName}" Grid.Row="2" Grid.Column="1" Margin="5" Grid.ColumnSpan="3" />
         <Label Grid.Row="3"  Content="Użytkownik:" Margin="5" />
-        <TextBox Grid.Row="3" Grid.Column="1" Margin="5" Grid.ColumnSpan="3" />
+        <TextBox Text="{Binding DbUser}" Grid.Row="3" Grid.Column="1" Margin="5" Grid.ColumnSpan="3" />
         <Label Grid.Row="4"  Content="Hasło:" Margin="5" />
-        <TextBox Grid.Row="4" Grid.Column="1" Margin="5" Grid.ColumnSpan="3" />
+        <TextBox Text="{Binding DbPassword}" Grid.Row="4" Grid.Column="1" Margin="5" Grid.ColumnSpan="3" />
 
         <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="2" HorizontalAlignment="Right" Grid.ColumnSpan="2">
-            <Button Content="Anuluj" Height="25" Width="100" Margin="5" />
-            <Button Content="Zatwierdź" Height="25" Width="100" Margin="5" />
+            <Button Command="{Binding CloseCommand}" CommandParameter="{Binding ElementName=DbSettingsWindow}"  Content="Anuluj" Height="25" Width="100" Margin="5" />
+            <Button Command="{Binding ConfirmCommand}" CommandParameter="{Binding ElementName=DbSettingsWindow}" Content="Zatwierdź" Height="25" Width="100" Margin="5" />
         </StackPanel>
 
     </Grid>

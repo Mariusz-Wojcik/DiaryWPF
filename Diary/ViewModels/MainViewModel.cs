@@ -16,21 +16,18 @@ using System.Threading.Tasks;
 using System.Web.Hosting;
 using System.Windows;
 using System.Windows.Input;
+using System.Data.Entity;
+using System.Data;
 
 namespace Diary.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
         private Repository _repository = new Repository();
-        private string dbServerAdress = Settings.Default.DbServerAdress;
-        private string dbServerName = Settings.Default.DbServerName;
-        private string dbName = Settings.Default.DbName;
-        private string dbUser = Settings.Default.DbUser;
-        private string dbPassword = Settings.Default.DbPassword;
 
         public MainViewModel()
         {
-            IsServerConnected($@"Server={dbServerAdress}\{dbServerName};Database={dbName};User Id={dbUser};Password={dbPassword};");
+            IsServerConnected();
             AddStudentsCommand = new RelayCommand(AddEditStudent);
             EditStudentsCommand = new RelayCommand(AddEditStudent, CanEditDeleteStudent);
             DeleteStudentsCommand = new AsyncRelayCommand(DeleteStudent, CanEditDeleteStudent);
@@ -38,7 +35,6 @@ namespace Diary.ViewModels
             RefreshDiary();
 
             InitGroups();
-
         }
 
 
@@ -148,17 +144,18 @@ namespace Diary.ViewModels
             Students = new ObservableCollection<StudentWrapper>(_repository.GetStudents(SelectedGroupId));
         }
 
-        private static bool IsServerConnected(string connectionString)
+
+        private static bool IsServerConnected()
         {
-            var dbSettingsWindow = new DbSettingsView();
 
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (var context = new ApplicationDbContext())
             {
                 try
                 {
-                    connection.Open();
-                    MessageBox.Show("Good Job");
+                    context.Database.Connection.Open();
+                    if (context.Database.Connection.State == ConnectionState.Open)
+                        MessageBox.Show("Good Job");
+                    
                     return true;
 
                 }
@@ -166,14 +163,16 @@ namespace Diary.ViewModels
                 {
                     var dialog = MessageBox.Show("Nie można się połaczyć z bazą danych, czy chcesz wprowadzić dane do serwera bazy danych?", "Błąd serwera", MessageBoxButton.YesNo);
                     if (dialog == MessageBoxResult.Yes)
+                    {
+                        var dbSettingsWindow = new DbSettingsView();
                         dbSettingsWindow.ShowDialog();
+                        IsServerConnected();
+                    }
                     else
-                        Application.Current.Shutdown();
+                    {
+                        System.Environment.Exit(0);
+                    }
                     return false;
-                }
-                finally
-                {
-                    connection.Close();
                 }
             }
         }

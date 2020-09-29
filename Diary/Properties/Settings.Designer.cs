@@ -26,12 +26,12 @@ namespace Diary.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("(local)")]
-        public string DbServerAdress {
+        public string DbServerAddress {
             get {
-                return ((string)(this["DbServerAdress"]));
+                return ((string)(this["DbServerAddress"]));
             }
             set {
-                this["DbServerAdress"] = value;
+                this["DbServerAddress"] = value;
             }
         }
         
@@ -73,7 +73,7 @@ namespace Diary.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("passwords")]
+        [global::System.Configuration.DefaultSettingValueAttribute("password")]
         public string DbPassword {
             get {
                 return ((string)(this["DbPassword"]));

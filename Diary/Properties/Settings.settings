@@ -2,7 +2,7 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Diary.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="DbServerAdress" Type="System.String" Scope="User">
+    <Setting Name="DbServerAddress" Type="System.String" Scope="User">
       <Value Profile="(Default)">(local)</Value>
     </Setting>
     <Setting Name="DbServerName" Type="System.String" Scope="User">
@@ -15,7 +15,7 @@
       <Value Profile="(Default)">user</Value>
     </Setting>
     <Setting Name="DbPassword" Type="System.String" Scope="User">
-      <Value Profile="(Default)">passwords</Value>
+      <Value Profile="(Default)">password</Value>
     </Setting>
   </Settings>
 </SettingsFile>
