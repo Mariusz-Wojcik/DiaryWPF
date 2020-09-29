@@ -1,22 +1,15 @@
 ﻿using Diary.Commands;
-using Diary.Models;
 using Diary.Models.Domains;
 using Diary.Models.Wrappers;
-using Diary.Properties;
 using Diary.Views;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using System.Web.Hosting;
 using System.Windows;
 using System.Windows.Input;
-using System.Data.Entity;
 using System.Data;
 
 namespace Diary.ViewModels
@@ -105,7 +98,7 @@ namespace Diary.ViewModels
             var dialog = await metroWindow.ShowMessageAsync("Usuwanie ucznia", $"Czy na pewno chcesz usunąć ucznia " +
                 $"{SelectedStudent.FirstName} {SelectedStudent.LastName} ?", MessageDialogStyle.AffirmativeAndNegative);
             if (dialog != MessageDialogResult.Affirmative)
-                return;
+                    return;
 
             _repository.DeleteStudent(SelectedStudent.Id);
 
@@ -154,8 +147,7 @@ namespace Diary.ViewModels
                 {
                     context.Database.Connection.Open();
                     if (context.Database.Connection.State == ConnectionState.Open)
-                        MessageBox.Show("Good Job");
-                    
+                    { }
                     return true;
 
                 }
@@ -163,7 +155,7 @@ namespace Diary.ViewModels
                 {
                     var dialog = MessageBox.Show("Nie można się połaczyć z bazą danych, czy chcesz wprowadzić dane do serwera bazy danych?", "Błąd serwera", MessageBoxButton.YesNo);
                     if (dialog == MessageBoxResult.Yes)
-                    {
+                        {
                         var dbSettingsWindow = new DbSettingsView();
                         dbSettingsWindow.ShowDialog();
                         IsServerConnected();
