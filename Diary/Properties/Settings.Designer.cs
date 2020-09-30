@@ -49,7 +49,7 @@ namespace Diary.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Diary")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Diaryss")]
         public string DbName {
             get {
                 return ((string)(this["DbName"]));

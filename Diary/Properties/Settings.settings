@@ -9,7 +9,7 @@
       <Value Profile="(Default)">SQLEXPRESS</Value>
     </Setting>
     <Setting Name="DbName" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Diary</Value>
+      <Value Profile="(Default)">Diaryss</Value>
     </Setting>
     <Setting Name="DbUser" Type="System.String" Scope="User">
       <Value Profile="(Default)">user</Value>

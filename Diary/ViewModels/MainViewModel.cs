@@ -21,6 +21,7 @@ namespace Diary.ViewModels
         public MainViewModel()
         {
             IsServerConnected();
+            App.SplashScreen.Close(new TimeSpan(0, 0, 1));
             AddStudentsCommand = new RelayCommand(AddEditStudent);
             EditStudentsCommand = new RelayCommand(AddEditStudent, CanEditDeleteStudent);
             DeleteStudentsCommand = new AsyncRelayCommand(DeleteStudent, CanEditDeleteStudent);
